@@ -22,55 +22,15 @@
       <password>admin123</password>
       <id>priv-transwarp-plugin-snapshots</id>
     </server>
-    <server>
-      <username>admin</username>
-      <password>password</password>
-      <id>central</id>
-    </server>
-    <server>
-      <username>admin</username>
-      <password>password</password>
-      <id>snapshots</id>
-    </server>
   </servers>
   <mirrors>
     <mirror>
-      <mirrorOf>*</mirrorOf>
-      <name>repo</name>
-      <url>http://172.16.1.168:8081/artifactory/repo</url>
-      <id>repo</id>
-    </mirror>
-    <mirror>
-      <mirrorOf>*</mirrorOf>
-      <name>remote-repos</name>
-      <url>http://172.16.1.168:8081/artifactory/remote-repos</url>
-      <id>remote-repos</id>
-    </mirror>
-    <mirror>
-      <id>alimaven</id>
-      <name>aliyun maven</name>
-      <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
-      <mirrorOf>central</mirrorOf>
-    </mirror>
-    <mirror>
-      <id>repo1</id>
-      <mirrorOf>central</mirrorOf>
-      <name>Human Readable Name for this Mirror.</name>
-      <url>http://repo1.maven.org/maven2/</url>
-    </mirror>
-    <mirror>
-      <id>repo2</id>
-      <mirrorOf>central</mirrorOf>
-      <name>Human Readable Name for this Mirror.</name>
-      <url>http://repo2.maven.org/maven2/</url>
-    </mirror>
-    <mirror>
-      <id>priv-transwarp-lib</id>
+      <id>priv-transwarp-lib-mirror</id>
       <name>nexus repo for dependencies</name>
       <url>http://172.16.1.161:30033/repository/repo</url>
-      <mirrorOf>*</mirrorOf>
+      <mirrorOf>*,!priv-transwarp-libs-release,!priv-transwarp-lib,!public-transwarp-snapshots,!priv-transwarp-snapshots,!priv-transwarp-plugin,!priv-transwarp-plugin-snapshots</mirrorOf>
     </mirror>
-  </mirrors>
+  </mirrors>  
   <profiles>
     <profile>
       <repositories>
@@ -78,7 +38,7 @@
           <snapshots>
             <enabled>false</enabled>
           </snapshots>
-          <id>central</id>
+          <id>priv-transwarp-libs-release</id>
           <name>libs-release</name>
           <url>http://172.16.1.161:30033/repository/libs-release</url>
         </repository>
@@ -92,29 +52,15 @@
         </repository>
         <repository>
           <snapshots />
-          <id>priv-transwarp-snapshots</id>
+          <id>public-transwarp-snapshots</id>
           <name>libs-snapshot</name>
-          <url>http://172.16.1.161:30033/repository/libs-snapshot</url>
+          <url>http://172.16.1.168:8081/artifactory/libs-snapshot-local</url>
         </repository>
-        <!-- <repository>
+        <repository>
           <snapshots />
           <id>priv-transwarp-snapshots</id>
           <name>libs-snapshot-local</name>
           <url>http://172.16.1.161:30033/repository/libs-snapshot-local</url>
-        </repository> -->
-        <repository>
-          <snapshots>
-            <enabled>false</enabled>
-          </snapshots>
-          <id>central</id>
-          <name>libs-release</name>
-          <url>http://172.16.1.168:8081/artifactory/libs-release</url>
-        </repository>
-        <repository>
-          <snapshots />
-          <id>snapshots</id>
-          <name>libs-snapshot</name>
-          <url>http://172.16.1.168:8081/artifactory/libs-snapshot</url>
         </repository>
       </repositories>
      <pluginRepositories>
@@ -131,20 +77,6 @@
           <id>priv-transwarp-plugin-snapshots</id>
           <name>plugins-snapshot</name>
           <url>http://172.16.1.161:30033/repository/plugins-snapshot</url>
-        </pluginRepository>
-        <!-- <pluginRepository>
-          <snapshots>
-            <enabled>false</enabled>
-          </snapshots>
-          <id>central</id>
-          <name>plugins-release</name>
-          <url>http://172.16.1.168:8081/artifactory/plugins-release</url>
-        </pluginRepository> -->
-        <pluginRepository>
-          <snapshots />
-          <id>snapshots</id>
-          <name>plugins-snapshot</name>
-          <url>http://172.16.1.168:8081/artifactory/plugins-snapshot</url>
         </pluginRepository>
      </pluginRepositories>
      <id>artifactory</id>
