@@ -3,34 +3,74 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <servers>
     <server>
-      <username>huwei</username>
-      <password>123456</password>
-      <id>public-transwarp-release</id>
+      <username>admin</username>
+      <password>admin123</password>
+      <id>priv-transwarp-lib</id>
     </server>
     <server>
-      <username>huwei</username>
-      <password>123456</password>
-      <id>public-transwarp-snapshots</id>
+      <username>admin</username>
+      <password>admin123</password>
+      <id>priv-transwarp-snapshots</id>
     </server>
     <server>
-      <username>huwei</username>
-      <password>123456</password>
-      <id>priv-transwarp-plugin-release</id>
+      <username>admin</username>
+      <password>admin123</password>
+      <id>priv-transwarp-plugin</id>
     </server>
     <server>
-      <username>huwei</username>
-      <password>123456</password>
+      <username>admin</username>
+      <password>admin123</password>
       <id>priv-transwarp-plugin-snapshots</id>
+    </server>
+    <server>
+      <username>admin</username>
+      <password>password</password>
+      <id>central</id>
+    </server>
+    <server>
+      <username>admin</username>
+      <password>password</password>
+      <id>snapshots</id>
     </server>
   </servers>
   <mirrors>
     <mirror>
-      <id>public-transwarp-remote</id>
-      <name>public repo for dependencies</name>
-      <url>http://172.16.1.168:8081/artifactory/remote-repos</url>
-      <mirrorOf>*,!central,!public-transwarp-snapshots,!public-transwarp-release,!public-transwarp-snapshots-repo,!remote,!priv-transwarp-plugin-release,!priv-transwarp-plugin-snapshots</mirrorOf>
+      <mirrorOf>*</mirrorOf>
+      <name>repo</name>
+      <url>http://172.16.1.168:8081/artifactory/repo</url>
+      <id>repo</id>
     </mirror>
-  </mirrors>  
+    <mirror>
+      <mirrorOf>*</mirrorOf>
+      <name>remote-repos</name>
+      <url>http://172.16.1.168:8081/artifactory/remote-repos</url>
+      <id>remote-repos</id>
+    </mirror>
+    <mirror>
+      <id>alimaven</id>
+      <name>aliyun maven</name>
+      <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+      <mirrorOf>central</mirrorOf>
+    </mirror>
+    <mirror>
+      <id>repo1</id>
+      <mirrorOf>central</mirrorOf>
+      <name>Human Readable Name for this Mirror.</name>
+      <url>http://repo1.maven.org/maven2/</url>
+    </mirror>
+    <mirror>
+      <id>repo2</id>
+      <mirrorOf>central</mirrorOf>
+      <name>Human Readable Name for this Mirror.</name>
+      <url>http://repo2.maven.org/maven2/</url>
+    </mirror>
+    <mirror>
+      <id>priv-transwarp-lib</id>
+      <name>nexus repo for dependencies</name>
+      <url>http://172.16.1.161:30033/repository/repo</url>
+      <mirrorOf>*</mirrorOf>
+    </mirror>
+  </mirrors>
   <profiles>
     <profile>
       <repositories>
@@ -40,35 +80,41 @@
           </snapshots>
           <id>central</id>
           <name>libs-release</name>
+          <url>http://172.16.1.161:30033/repository/libs-release</url>
+        </repository>
+        <repository>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+          <id>priv-transwarp-lib</id>
+          <name>libs-release-local</name>
+          <url>http://172.16.1.161:30033/repository/libs-release-local</url>
+        </repository>
+        <repository>
+          <snapshots />
+          <id>priv-transwarp-snapshots</id>
+          <name>libs-snapshot</name>
+          <url>http://172.16.1.161:30033/repository/libs-snapshot</url>
+        </repository>
+        <!-- <repository>
+          <snapshots />
+          <id>priv-transwarp-snapshots</id>
+          <name>libs-snapshot-local</name>
+          <url>http://172.16.1.161:30033/repository/libs-snapshot-local</url>
+        </repository> -->
+        <repository>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+          <id>central</id>
+          <name>libs-release</name>
           <url>http://172.16.1.168:8081/artifactory/libs-release</url>
         </repository>
         <repository>
-          <snapshots>
-            <enabled>false</enabled>
-          </snapshots>
-          <id>remote</id>
-          <name>remote</name>
-          <url>http://172.16.1.168:8081/artifactory/remote-repos</url>
-        </repository>
-        <repository>
-          <snapshots>
-            <enabled>false</enabled>
-          </snapshots>
-          <id>public-transwarp-release</id>
-          <name>libs-release-local</name>
-          <url>http://172.16.1.168:8081/artifactory/libs-release-local</url>
-        </repository>
-        <repository>
           <snapshots />
-          <id>public-transwarp-snapshots-repo</id>
+          <id>snapshots</id>
           <name>libs-snapshot</name>
           <url>http://172.16.1.168:8081/artifactory/libs-snapshot</url>
-        </repository>
-        <repository>
-          <snapshots />
-          <id>public-transwarp-snapshots</id>
-          <name>libs-snapshot-local</name>
-          <url>http://172.16.1.168:8081/artifactory/libs-snapshot-local</url>
         </repository>
       </repositories>
      <pluginRepositories>
@@ -76,27 +122,27 @@
           <snapshots>
             <enabled>false</enabled>
           </snapshots>
-          <id>priv-transwarp-plugin-release</id>
-          <name>plugins-release-local</name>
-          <url>http://172.16.1.168:8081/artifactory/plugins-release-local</url>
+          <id>priv-transwarp-plugin</id>
+          <name>plugins-release</name>
+          <url>http://172.16.1.161:30033/repository/plugins-release</url>
         </pluginRepository>
         <pluginRepository>
           <snapshots />
           <id>priv-transwarp-plugin-snapshots</id>
-          <name>plugins-snapshot-local</name>
-          <url>http://172.16.1.168:8081/artifactory/plugins-snapshot-local</url>
+          <name>plugins-snapshot</name>
+          <url>http://172.16.1.161:30033/repository/plugins-snapshot</url>
         </pluginRepository>
-        <pluginRepository>
+        <!-- <pluginRepository>
           <snapshots>
             <enabled>false</enabled>
           </snapshots>
-          <id>priv-transwarp-plugin-release-repo</id>
+          <id>central</id>
           <name>plugins-release</name>
           <url>http://172.16.1.168:8081/artifactory/plugins-release</url>
-        </pluginRepository>
+        </pluginRepository> -->
         <pluginRepository>
           <snapshots />
-          <id>priv-transwarp-plugin-snapshots-repo</id>
+          <id>snapshots</id>
           <name>plugins-snapshot</name>
           <url>http://172.16.1.168:8081/artifactory/plugins-snapshot</url>
         </pluginRepository>
